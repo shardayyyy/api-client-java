@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+import com.google.gson.Gson;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -16,10 +17,10 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 public class PlaceOrder {
-	private static final String API_KEY = "Please sign up on the website to get an api key and replace it here";
-	private static final String PRIVATE_KEY = "Replace your private key here";
+	private static final String API_KEY = "NOT_REAL_API_KEY==";//"Please sign up on the website to get an api key and replace it here";
+	private static final String PRIVATE_KEY = "NOT_REAL_PRIVATE_KEY==";//"Replace your private key here";
 
-	public static String BASEURL = "REPLACE API BASE URL HERE";
+	public static String BASEURL = "NOT_REAL_BASE_URL";
 	private static String ORDER_CREATE_PATH = "/order/create";  
 	private static final String APIKEY_HEADER = "apikey";
 	private static final String TIMESTAMP_HEADER = "timestamp";
@@ -31,25 +32,41 @@ public class PlaceOrder {
 		String response = "";
 		try {
 			// input parameters for creating a new account. data is posted via https
-			String postData = "{\"currency\":\"ZAR\",\"instrument\":\"BTC\",\"price\":13000000000,\"volume\":10000000,\"orderSide\":\"Bid\",\"ordertype\":\"Limit\",\"clientRequestId\":\"1\"}";
-			
+			//String postData = "{\"currency\":\"ZAR\",\"instrument\":\"BTC\",\"price\":13000000000,\"volume\":10000000,\"orderSide\":\"Bid\",\"ordertype\":\"Limit\",\"clientRequestId\":\"1\"}";
+			PostData data = new PostData();
+			data.setCurrency(Currency.DOLLAR);
+			data.setInstrument("BTC");
+			data.setPrice(13000000000L);
+			data.setVolume(10000000);
+			data.setOrderSide("Bid");
+			data.setOrdertype("Limit");
+			data.setClientRequestId("1");
+			Gson gson = new Gson();
+			String postData = gson.toJson(data);
+			//System.out.println("json    =" + postData);
+			System.out.println("postData=" + postData);
+			//PostData obj2 = gson.fromJson(json, PostData.class); // convert back
+
 			//get the current timestamp. It's best to use ntp or similar services in order to sync your server time
 			String timestamp = Long.toString(System.currentTimeMillis());
 
 			// create the string that needs to be signed   
 			String stringToSign = buildStringToSign(ORDER_CREATE_PATH, null, postData, timestamp);
+			System.out.println("stringToSign="+ stringToSign);
 
 			// build signature to be included in the http header   
 			String signature = signRequest(PRIVATE_KEY, stringToSign);
+			System.out.println("Signature="+ signature);
 
 			//full url path
 			String url = BASEURL + ORDER_CREATE_PATH;
+			System.out.println("url="+ url);
 
 			response = executeHttpPost(postData, url, API_KEY, PRIVATE_KEY, signature, timestamp);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		System.out.println(response);
+		System.out.println("response="+ response);
 	}
 
 	public static String executeHttpPost(String postData, String url, 
