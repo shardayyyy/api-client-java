@@ -3,7 +3,7 @@ package com.ice3x.api.sample.entity;
 /**
  * Created by folashade.adeyosoye on 6/18/2015.
  */
-public class PostData {
+public class PostData{
     //{"currency":"ZAR","instrument":"BTC","price":13000000000,"volume":10000000,"orderSide":"Bid","ordertype":"Limit","clientRequestId":"1"}";
     private String currency;
     private String instrument;

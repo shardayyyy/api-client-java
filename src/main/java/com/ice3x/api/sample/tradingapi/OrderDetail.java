@@ -1,12 +1,7 @@
-package com.ice3x.api.sample;
-
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
+package com.ice3x.api.sample.tradingapi;
 
 import com.google.gson.Gson;
+import com.ice3x.api.sample.common.Currency;
 import com.ice3x.api.sample.entity.PostData;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
@@ -17,7 +12,12 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-public class PlaceOrder {
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+public class OrderDetail {
 	private static final String API_KEY = "NOT_REAL_API_KEY==";//"Please sign up on the website to get an api key and replace it here";
 	private static final String PRIVATE_KEY = "NOT_REAL_PRIVATE_KEY==";//"Replace your private key here";
 
@@ -50,6 +50,10 @@ public class PlaceOrder {
 	public static void main(String[] args) throws Exception {
 		String response = "";
 		try {
+
+			// Display Balance
+
+
 			// input parameters for creating a new account. data is posted via https
 			//String postData = "{\"currency\":\"ZAR\",\"instrument\":\"BTC\",\"price\":13000000000,\"volume\":10000000,\"orderSide\":\"Bid\",\"ordertype\":\"Limit\",\"clientRequestId\":\"1\"}";
 			PostData data = new PostData();
