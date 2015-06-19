@@ -21,7 +21,7 @@ public class PlaceOrder {
 	private static final String API_KEY = "NOT_REAL_API_KEY==";//"Please sign up on the website to get an api key and replace it here";
 	private static final String PRIVATE_KEY = "NOT_REAL_PRIVATE_KEY==";//"Replace your private key here";
 
-	public static String BASEURL = "NOT_REAL_BASE_URL";
+	public static String BASEURL = "https://api.ice3x.com/"; //"NOT_REAL_BASE_URL";
 	private static String ORDER_CREATE_PATH = "/order/create";  
 	private static final String APIKEY_HEADER = "apikey";
 	private static final String TIMESTAMP_HEADER = "timestamp";
