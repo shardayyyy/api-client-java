@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class TickApiCall extends ApiBase {
 
 
-    private static String TICK_PATH = "/market/BTC/ZAR/tick";
+    private static String PATH = "/market/BTC/ZAR/tick";
     private HttpServletRequest request;
 
 
@@ -20,7 +20,7 @@ public class TickApiCall extends ApiBase {
         String response = "";
         try {
             //full url path
-            String urlString = BASEURL + TICK_PATH;
+            String urlString = BASEURL + PATH;
             System.out.println("url=" + urlString);
 
             response = executeRestfulCall(urlString);
