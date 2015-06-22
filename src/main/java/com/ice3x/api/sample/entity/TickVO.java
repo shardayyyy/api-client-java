@@ -1,9 +1,11 @@
-package com.ice3x.api.sample.marketapi;
+package com.ice3x.api.sample.entity;
+
+import java.util.Date;
 
 /**
  * Created by folashade.adeyosoye on 6/19/2015.
  */
-public class Tick {
+public class TickVO {
     //{"bestBid":13700000000,"bestAsk":14000000000,"lastPrice":14000000000,"currency":"ZAR","instrument":"BTC","timestamp":1378878117}
     private Long bestBid;
     private Long bestAsk;
@@ -60,4 +62,21 @@ public class Tick {
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
+
+    public String toString(String json) {
+        String str = "";
+        str += "\n=====================================";
+        str += "\n=============   TICK   ==============";
+        str += "\n===" + json + "==";
+        str += "\n=====================================";
+        str += "\nBest Bid = " + bestBid;
+        str += "\nBast Ask = " + bestAsk;
+        str += "\nLast Price = " + lastPrice;
+        str += "\nCurrency = " + currency;
+        str += "\nInstrument = " + instrument;
+        str += "\nTimestamp = " + timestamp;
+        str += "\nDate = " + new Date(timestamp);
+        return str;
+    }
+
 }

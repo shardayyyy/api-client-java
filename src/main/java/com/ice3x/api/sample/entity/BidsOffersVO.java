@@ -3,7 +3,7 @@ package com.ice3x.api.sample.entity;
 /**
  * Created by folashade.adeyosoye on 6/19/2015.
  */
-public class BidsOffers {
+public class BidsOffersVO {
 
     private long bids;
     private long volume;

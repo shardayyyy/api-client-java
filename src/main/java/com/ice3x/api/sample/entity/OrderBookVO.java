@@ -1,15 +1,11 @@
-package com.ice3x.api.sample.marketapi;
-
-import com.ice3x.api.sample.entity.AsksOffers;
-import com.ice3x.api.sample.entity.BidsOffers;
-import com.ice3x.api.sample.entity.MarketBase;
+package com.ice3x.api.sample.entity;
 
 import java.util.List;
 
 /**
  * Created by folashade.adeyosoye on 6/18/2015.
  */
-public class OrderBook extends MarketBase {
+public class OrderBookVO {
     //https://api.ice3x.com/market/BTC/ZAR/orderbook
     //{"currency":"ZAR",
     // "instrument":"BTC",
@@ -20,8 +16,8 @@ public class OrderBook extends MarketBase {
     private String currency;
     private String instrument;
     private long timestamp;
-    private List<AsksOffers> asks;
-    private List<BidsOffers> bids;
+    private List<AsksOffersVO> asks;
+    private List<BidsOffersVO> bids;
 
     public String getCurrency() {
         return currency;
@@ -47,19 +43,19 @@ public class OrderBook extends MarketBase {
         this.timestamp = timestamp;
     }
 
-    public List<AsksOffers> getAsks() {
+    public List<AsksOffersVO> getAsks() {
         return asks;
     }
 
-    public void setAsks(List<AsksOffers> asks) {
+    public void setAsks(List<AsksOffersVO> asks) {
         this.asks = asks;
     }
 
-    public List<BidsOffers> getBids() {
+    public List<BidsOffersVO> getBids() {
         return bids;
     }
 
-    public void setBids(List<BidsOffers> bids) {
+    public void setBids(List<BidsOffersVO> bids) {
         this.bids = bids;
     }
 }

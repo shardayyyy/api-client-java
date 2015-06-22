@@ -1,9 +1,9 @@
-package com.ice3x.api.sample.marketapi;
+package com.ice3x.api.sample.entity;
 
 /**
  * Created by folashade.adeyosoye on 6/18/2015.
  */
-public class Trade {
+public class TradeVO {
     //[{"tid":4432702312,"amount":10000000,"price":14000000000,"date":1378878093},{"tid":59861212129,"amount":1000000,"price":12500000000,"date":1377840783}]
     private long tid;
     private long amount;
