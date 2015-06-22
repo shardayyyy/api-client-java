@@ -1,6 +1,9 @@
 package com.ice3x.api.sample.entity;
 
-import java.util.List;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by folashade.adeyosoye on 6/18/2015.
@@ -16,8 +19,8 @@ public class OrderBookVO {
     private String currency;
     private String instrument;
     private long timestamp;
-    private List<AsksOffersVO> asks;
-    private List<BidsOffersVO> bids;
+    private TreeMap<String, String> asks;
+    private TreeMap<String, String> bids;
 
     public String getCurrency() {
         return currency;
@@ -43,19 +46,34 @@ public class OrderBookVO {
         this.timestamp = timestamp;
     }
 
-    public List<AsksOffersVO> getAsks() {
+    public Map<String, String> getAsks() {
         return asks;
     }
 
-    public void setAsks(List<AsksOffersVO> asks) {
+    public void setAsks(TreeMap<String, String> asks) {
         this.asks = asks;
     }
 
-    public List<BidsOffersVO> getBids() {
+    public Map<String, String> getBids() {
         return bids;
     }
 
-    public void setBids(List<BidsOffersVO> bids) {
+    public void setBids(TreeMap<String, String> bids) {
         this.bids = bids;
+    }
+
+    public String toString(String json) {
+        String str = "";
+        str += "\n===========================================";
+        str += "\n=============   Order Book   ==============";
+        str += "\n===" + json + "==";
+        str += "\n===========================================";
+        str += "\nCurrency = " + currency;
+        str += "\nInstrument = " + instrument;
+        str += "\nTimestamp = " + timestamp;
+        str += "\nDate = " + new Date(timestamp);
+        //str += "\nAsks = " + asks;
+        //str += "\nBids = " + bids;
+        return str;
     }
 }
