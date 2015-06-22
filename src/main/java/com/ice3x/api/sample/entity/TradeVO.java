@@ -1,5 +1,7 @@
 package com.ice3x.api.sample.entity;
 
+import java.util.Date;
+
 /**
  * Created by folashade.adeyosoye on 6/18/2015.
  */
@@ -40,5 +42,18 @@ public class TradeVO {
 
     public void setDate(long date) {
         this.date = date;
+    }
+
+    public String toString(String json) {
+        String str = "";
+        str += "\n===========================================";
+        str += "\n=============   Trade   ==============";
+        str += "\n===" + json + "==";
+        str += "\n===========================================";
+        str += "\nTid = " + tid;
+        str += "\nAmount = " + amount;
+        str += "\nPrice = " + price;
+        str += "\nDate = " + date;
+        return str;
     }
 }

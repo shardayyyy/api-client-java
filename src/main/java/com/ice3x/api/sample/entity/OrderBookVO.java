@@ -1,9 +1,6 @@
 package com.ice3x.api.sample.entity;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by folashade.adeyosoye on 6/18/2015.
@@ -46,7 +43,7 @@ public class OrderBookVO {
         this.timestamp = timestamp;
     }
 
-    public Map<String, String> getAsks() {
+    public TreeMap<String, String> getAsks() {
         return asks;
     }
 
@@ -54,7 +51,7 @@ public class OrderBookVO {
         this.asks = asks;
     }
 
-    public Map<String, String> getBids() {
+    public TreeMap<String, String> getBids() {
         return bids;
     }
 
