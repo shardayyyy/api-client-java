@@ -16,8 +16,8 @@ public class OrderBookVO {
     private String currency;
     private String instrument;
     private long timestamp;
-    private Double[] asks;
-    private Double[] bids;
+    private List<AskVO> asks;
+    private List<BidVO> bids;
 
 
 
@@ -45,19 +45,19 @@ public class OrderBookVO {
         this.timestamp = timestamp;
     }
 
-    public Double[] getAsks() {
+    public List<AskVO> getAsks() {
         return asks;
     }
 
-    public void setAsks(Double[] asks) {
+    public void setAsks(List<AskVO> asks) {
         this.asks = asks;
     }
 
-    public Double[] getBids() {
+    public List<BidVO> getBids() {
         return bids;
     }
 
-    public void setBids(Double[] bids) {
+    public void setBids(List<BidVO> bids) {
         this.bids = bids;
     }
 
@@ -71,8 +71,16 @@ public class OrderBookVO {
         str += "\nInstrument = " + instrument;
         str += "\nTimestamp = " + timestamp;
         str += "\nDate = " + new Date(timestamp);
-        //str += "\nAsks = " + asks;
-        //str += "\nBids = " + bids;
+        str += "\n " + asks.size() + " ASKS";
+        str += "\n-------------------------------";
+        for (AskVO ask : asks) {
+            str += "\n[Ask = " + ask.getAsk() + " and Volume = " + ask.getVolume() + "]";
+        }
+        str += "\n " + bids.size() + " BIDS";
+        str += "\n-------------------------------";
+        for (BidVO bid : bids) {
+            str += "\n[Bid = " + bid.getBid() + " and Volume = " + bid.getVolume() + "]";
+        }
         return str;
     }
 }

@@ -10,9 +10,13 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.ice3x.api.sample.entity.AskVO;
+import com.ice3x.api.sample.entity.BidVO;
 import com.ice3x.api.sample.entity.OrderBookVO;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 //http://www.javacreed.com/gson-deserialiser-example/
 public class OrderBookDeserializer implements JsonDeserializer<OrderBookVO> {
@@ -33,19 +37,38 @@ public class OrderBookDeserializer implements JsonDeserializer<OrderBookVO> {
             final String instrument = jsonObject.get("instrument").getAsString();
             final Long timestamp = jsonObject.get("timestamp").getAsLong();
 
+
             final JsonArray jsonAsksArray = jsonObject.get("asks").getAsJsonArray();
-            final Double[] asks = new Double[jsonAsksArray.size()];
-            for (int i = 0; i < asks.length; i++) {
-                final JsonElement jsonAsks = jsonAsksArray.get(i);
-                asks[i] = jsonAsks.getAsDouble();
+            final List<AskVO> asks = new ArrayList<AskVO>();//[jsonBidsArray.size()];// final AskVO[] asks = new AskVO[jsonAsksArray.size()];
+            AskVO askVO ;
+            final JsonArray jsonAsks = jsonAsksArray.getAsJsonArray();
+            for (int i = 0; i < jsonAsks.size(); i++) {
+                JsonArray tupleArray = jsonAsks.get(i).getAsJsonArray();
+                askVO = new AskVO();
+                JsonElement ask = tupleArray.get(0);
+                askVO.setAsk(ask.getAsLong());
+
+                JsonElement vol = tupleArray.get(1);
+                askVO.setVolume(vol.getAsDouble());
+                asks.add(askVO);
             }
 
+
             final JsonArray jsonBidsArray = jsonObject.get("bids").getAsJsonArray();
-            final Double[] bids = new Double[jsonBidsArray.size()];
-//            for (int i = 0; i < bids.length; i++) {
-//                final JsonElement jsonBids = jsonBidsArray.get(i);
-//                bids[i] = jsonBids.getAsDouble();
-//            }
+            final List<BidVO> bids = new ArrayList<BidVO>();//[jsonBidsArray.size()];// final AskVO[] asks = new AskVO[jsonAsksArray.size()];
+            BidVO bidVO ;
+            final JsonArray jsonBids = jsonBidsArray.getAsJsonArray();
+            for (int i = 0; i < jsonBids.size(); i++) {
+                JsonArray tupleArray = jsonBids.get(i).getAsJsonArray();
+                bidVO = new BidVO();
+                JsonElement ask = tupleArray.get(0);
+                bidVO.setBid(ask.getAsDouble());
+
+                JsonElement vol = tupleArray.get(1);
+                bidVO.setVolume(vol.getAsDouble());
+                bids.add(bidVO);
+            }
+
 
             final OrderBookVO orderBookVO = new OrderBookVO();
             orderBookVO.setCurrency(currency);
