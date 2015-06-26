@@ -1,7 +1,9 @@
 package com.ice3x.api.sample.marketapi;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.ice3x.api.sample.ApiBase;
+import com.ice3x.api.sample.deserializer.OrderBookDeserializer;
 import com.ice3x.api.sample.entity.OrderBookVO;
 import com.ice3x.api.sample.entity.TickVO;
 
@@ -30,8 +32,15 @@ public class OrderBookApiCall extends ApiBase {
             System.out.println("Results=" + response);
 
             if (response != null && response.length() > 0) {
-                Gson gson = new Gson();
-                OrderBookVO orderBookVO = gson.fromJson(response, OrderBookVO.class); // convert back
+                //Gson gson = new Gson();
+
+
+                // Configure Gson
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                gsonBuilder.registerTypeAdapter(OrderBookVO.class, new OrderBookDeserializer());
+                Gson gson = gsonBuilder.create();
+                OrderBookVO orderBookVO = gson.fromJson(response, OrderBookVO.class); // Deserialize
+
                 String str = orderBookVO.toString(response);
                 System.out.println(str);
             }

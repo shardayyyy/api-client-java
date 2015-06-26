@@ -10,14 +10,16 @@ public class OrderBookVO {
     //{"currency":"ZAR",
     // "instrument":"BTC",
     // "timestamp":1378941290,
-    // "asks":[[14000000000,20000000],[14100000000,10000000],[14200000000,20000000],[14600000000,10000000],[15900000000,50000000],[16000000000,10000000],
+    // "asks":[[14000000000,20000000],[14100000000,10000000],[14200000000,20000000],[14600000000,10000000],[15900000000,50000000],[16000000000,10000000]],
     // "bids":[[13700000000,20000000],[12500000000,20000000],[12000010000,100000000],[12000000000,1000000]]}
 
     private String currency;
     private String instrument;
     private long timestamp;
-    private TreeMap<String, String> asks;
-    private TreeMap<String, String> bids;
+    private Double[] asks;
+    private Double[] bids;
+
+
 
     public String getCurrency() {
         return currency;
@@ -43,19 +45,19 @@ public class OrderBookVO {
         this.timestamp = timestamp;
     }
 
-    public TreeMap<String, String> getAsks() {
+    public Double[] getAsks() {
         return asks;
     }
 
-    public void setAsks(TreeMap<String, String> asks) {
+    public void setAsks(Double[] asks) {
         this.asks = asks;
     }
 
-    public TreeMap<String, String> getBids() {
+    public Double[] getBids() {
         return bids;
     }
 
-    public void setBids(TreeMap<String, String> bids) {
+    public void setBids(Double[] bids) {
         this.bids = bids;
     }
 
