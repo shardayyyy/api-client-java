@@ -33,8 +33,6 @@ public class OrderBookApiCall extends ApiBase {
 
             if (response != null && response.length() > 0) {
                 //Gson gson = new Gson();
-
-
                 // Configure Gson
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 gsonBuilder.registerTypeAdapter(OrderBookVO.class, new OrderBookDeserializer());

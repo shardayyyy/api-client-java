@@ -8,8 +8,8 @@ import java.util.Date;
 public class TradeVO {
     //[{"tid":4432702312,"amount":10000000,"price":14000000000,"date":1378878093},{"tid":59861212129,"amount":1000000,"price":12500000000,"date":1377840783}]
     private long tid;
-    private long amount;
-    private long price;
+    private double amount;
+    private double price;
     private long date;
 
     public long getTid() {
@@ -20,19 +20,19 @@ public class TradeVO {
         this.tid = tid;
     }
 
-    public long getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(long amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
